@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Для тебя ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070A12;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.085);
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.75);
+      --line:rgba(234,240,255,.12);
+      --accent1:#8B5CF6;
+      --accent2:#22D3EE;
+      --accent3:#FB7185;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(139,92,246,.22), transparent 55%),
+        radial-gradient(900px 700px at 80% 30%, rgba(34,211,238,.18), transparent 58%),
+        radial-gradient(1000px 800px at 55% 90%, rgba(251,113,133,.16), transparent 58%),
+        linear-gradient(180deg, #050713, #070A12 55%, #060815);
+      overflow-x:hidden;
+    }
+
+    /* subtle grain */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="160" height="160" filter="url(%23n)" opacity="0.12"/></svg>');
+      pointer-events:none;
+      mix-blend-mode:overlay;
+    }
+
+    .wrap{max-width:1100px; margin:0 auto; padding:26px 20px 70px; position:relative;}
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding:18px 18px;
+      border:1px solid var(--line);
+      border-radius:calc(var(--radius) + 6px);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+      position:sticky; top:14px; z-index:10;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .badge{
+      width:42px; height:42px; border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.5), rgba(255,255,255,.08) 55%),
+                  linear-gradient(135deg, rgba(139,92,246,.9), rgba(34,211,238,.75));
+      box-shadow: 0 10px 30px rgba(139,92,246,.25);
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .badge span{font-size:18px}
+    .title{
+      line-height:1.15;
+    }
+    .title .top{font-size:12px; color:var(--muted)}
+    .title .main{font-size:14px; font-weight:700; letter-spacing:.2px}
+
+    nav{
+      display:flex; flex-wrap:wrap; gap:10px;
+      justify-content:flex-end;
+    }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:13px;
+      padding:10px 12px;
+      border:1px solid rgba(234,240,255,.14);
+      background:rgba(255,255,255,.04);
+      border-radius:999px;
+      transition:.2s ease;
+    }
+    nav a:hover{color:var(--text); transform:translateY(-1px); background:rgba(255,255,255,.065)}
+
+    .hero{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+
+    .hero-main{padding:22px 22px 18px; position:relative;}
+    .hero-main h1{
+      margin:0 0 10px;
+      font-size: clamp(30px, 4.6vw, 52px);
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+    .hero-main h1 .script{font-family:Caveat, cursive; font-weight:700; color:rgba(255,255,255,.92)}
+    .hero-main p{margin:0; color:var(--muted); font-size:16px; line-height:1.55; max-width:60ch}
+
+    .pill-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(234,240,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .hero-side{display:grid; grid-template-rows:auto 1fr; gap:18px}
+
+    .photo-grid{padding:14px; display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .ph{
+      border-radius:18px;
+      border:1px solid rgba(234,240,255,.12);
+      background:rgba(255,255,255,.04);
+      position:relative;
+      overflow:hidden;
+      min-height:130px;
+    }
+    .ph img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.05)}
+    .ph .label{
+      position:absolute; left:10px; bottom:10px;
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.18);
+      color:rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .note{padding:16px 18px}
+    .note h3{margin:0 0 8px; font-size:16px}
+    .note p{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
+
+    section{margin-top:18px}
+
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px;
+      margin:10px 2px;
+    }
+    .section-head h2{margin:0; font-size:18px; letter-spacing:.2px}
+    .section-head .hint{margin:0; color:var(--muted); font-size:13px}
+
+    .timeline{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
+    .moment{padding:16px}
+    .moment .topline{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .moment .date{font-size:12px; color:var(--muted)}
+    .moment .tag{
+      font-size:12px; color:rgba(255,255,255,.9);
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(234,240,255,.14);
+      background:rgba(255,255,255,.04);
+    }
+    .moment h3{margin:10px 0 8px; font-size:16px}
+    .moment p{margin:0; color:var(--muted); line-height:1.6; font-size:14px}
+    .moment .media{margin-top:12px; display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+
+    .big{
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:center;
+    }
+    .big h2{margin:0 0 10px; font-size:20px}
+    .big p{margin:0; color:var(--muted); line-height:1.65}
+
+    .cta{
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .cta .left h2{margin:0 0 6px; font-size:18px}
+    .cta .left p{margin:0; color:var(--muted); line-height:1.5}
+
+    button{
+      appearance:none;
+      border:1px solid rgba(234,240,255,.18);
+      color:rgba(255,255,255,.95);
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,211,238,.8));
+      border-radius:999px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow: 0 14px 36px rgba(139,92,246,.18);
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    button:hover{transform:translateY(-1px); filter:brightness(1.05)}
+
+    footer{margin-top:22px; padding:18px; text-align:center; color:rgba(234,240,255,.6); font-size:13px}
+
+    /* floating hearts */
+    .heart{
+      position:fixed;
+      left:var(--x);
+      bottom:-40px;
+      font-size: var(--s);
+      opacity:0;
+      animation: floatUp var(--d) ease-in forwards;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
+      pointer-events:none;
+      z-index:999;
+    }
+    @keyframes floatUp{
+      0%{transform:translateY(0) translateX(0) scale(.9); opacity:0}
+      12%{opacity:.95}
+      100%{transform:translateY(-110vh) translateX(var(--dx)) scale(1.15); opacity:0}
+    }
+
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr;}
+      .timeline{grid-template-columns:1fr;}
+      .big{grid-template-columns:1fr;}
+      header{position:relative; top:auto;}
+      .brand{min-width:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="badge" aria-hidden="true"><span>❤</span></div>
+        <div class="title">
+          <div class="top">подарок</div>
+          <div class="main">Для <span id="herName">Лерочка</span></div>
+        </div>
+      </div>
+      <nav>
+        <a href="#start">Начало</a>
+        <a href="#moments">Моменты</a>
+        <a href="#reasons">Почему ты</a>
+        <a href="#future">Немного про нас</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="start" class="hero">
+        <div class="card hero-main">
+          <h1>
+            <span class="script" id="headline">Лерочка — мой любимый человек</span><br>
+            <span style="opacity:.92">и я очень рад, что мы вместе</span>
+          </h1>
+          <p id="intro">
+            Это маленькое сайт-письмо для тебя, Лерочка: наши фотки, немного тепла и слова, которые я хочу, чтобы ты прочитала в спокойный вечер. ❤
+          </p>
+          <div class="pill-row" aria-label="маленькие акценты">
+            <div class="pill">✨ <span id="pill1">твоя улыбка — мой любимый свет</span></div>
+            <div class="pill">📷 <span id="pill2">наши кадры счастья</span></div>
+            <div class="pill">🌙 <span id="pill3">нежность в каждом слове</span></div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="card photo-grid" aria-label="фотографии">
+            <div class="ph">
+              <!-- Замените src на ваши фото: photo1.jpg -->
+              <img src="img/photo_2026-02-03_18-10-26.jpg" alt="Фото 1" onerror="this.style.display='none'" />
+              <div class="label">Фото #1</div>
+            </div>
+            <div class="ph">
+              <img src="img/photo_2026-02-06_00-20-19.jpg" alt="Фото 2" onerror="this.style.display='none'" />
+              <div class="label">Фото #2</div>
+            </div>
+            <div class="ph">
+              <img src="img/photo_2026-02-06_00-20-27.jpg" alt="Фото 3" onerror="this.style.display='none'" />
+              <div class="label">Фото #3</div>
+            </div>
+            <div class="ph">
+              <img src="img/photo_2026-02-06_00-58-33.jpg" alt="Фото 4" onerror="this.style.display='none'" />
+              <div class="label">Фото #4</div>
+            </div>
+          </div>
+          <div class="card note">
+            <h3></h3>
+            <p id="noteText">
+              Лерочка, если вдруг день был шумный — просто остановись на минутку. Этот маленький уголок в интернете сделан для твоей улыбки и для того, чтобы ты почувствовала: тебя очень любят.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="moments">
+        <div class="section-head">
+          <h2>Наши моменты</h2>
+          <p class="hint">4 карточки с фото и короткими историями</p>
+        </div>
+        <div class="timeline">
+          <div class="card moment">
+            <div class="topline"><div class="date" id="m1date">Всегда</div><div class="tag" id="m1tag">Комплимент</div></div>
+            <h3 id="m1title">Твоя улыбка меня спасает</h3>
+            <p id="m1text">Даже когда у меня в голове тысяча мыслей, одно твоё «привет» и эта улыбка — и мир становится спокойнее. Ты умеешь делать тепло просто своим присутствием, Лерочка.</p>
+            <div class="media">
+              <div class="ph"><img src="img/photo_2026-02-06_00-58-48.jpg" alt="Момент 1 — фото A" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+              <div class="ph"><img src="img/photo_2026-02-06_00-59-00.jpg" alt="Момент 1 — фото B" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+            </div>
+          </div>
+
+          <div class="card moment">
+            <div class="topline"><div class="date" id="m2date">Всегда</div><div class="tag" id="m2tag">Комплимент</div></div>
+            <h3 id="m2title">Ты невероятно нежная и сильная</h3>
+            <p id="m2text">В тебе так красиво сочетаются мягкость и характер. Ты умеешь поддержать, понять, и при этом оставаться собой — настоящей, живой, прекрасной.</p>
+            <div class="media">
+              <div class="ph"><img src="img/photo_2026-02-06_00-59-15.jpg" alt="Момент 2 — фото A" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+              <div class="ph"><img src="img/photo_2026-02-06_00-59-31.jpg" alt="Момент 2 — фото B" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+            </div>
+          </div>
+
+          <div class="card moment">
+            <div class="topline"><div class="date" id="m3date">Всегда</div><div class="tag" id="m3tag">Комплимент</div></div>
+            <h3 id="m3title">С тобой — как дома</h3>
+            <p id="m3text">Мне рядом с тобой уютно и легко. Ты — тот человек, с которым хочется делиться всем: и радостями, и глупостями, и мечтами. Лерочка, ты мой комфорт.</p>
+            <div class="media">
+              <div class="ph"><img src="img/photo_2026-02-06_01-00-04.jpg" alt="Момент 3 — фото A" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+              <div class="ph"><img src="img/photo_2026-02-06_01-00-13.jpg" alt="Момент 3 — фото B" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+            </div>
+          </div>
+
+          <div class="card moment">
+            <div class="topline"><div class="date" id="m4date">Всегда</div><div class="tag" id="m4tag">Комплимент</div></div>
+            <h3 id="m4title">Ты вдохновляешь меня становиться лучше</h3>
+            <p id="m4text">Ты мотивируешь не словами, а тем, какая ты: внимательная, красивая внутри и снаружи, честная и добрая. Я рядом с тобой хочу быть сильнее, спокойнее и счастливее.</p>
+            <div class="media">
+              <div class="ph"><img src="img/photo_2026-02-06_01-00-22.jpg" alt="Момент 4 — фото A" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+              <div class="ph"><img src="img/photo_2026-02-06_01-00-30.jpg" alt="Момент 4 — фото B" onerror="this.style.display='none'" /><div class="label">Фото</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reasons">
+        <div class="section-head">
+          <h2>Почему ты — моя</h2>
+          <p class="hint">список маленьких причин</p>
+        </div>
+        <div class="card big">
+          <div>
+            <h2 id="reasonsTitle">Твои суперсилы</h2>
+            <p id="reasonsText">Вот маленький список того, за что я каждый день выбираю тебя — в твоих привычках, взгляде, заботе и том, как ты делаешь мир добрее.</p>
+            <ul id="reasonsList" style="margin:14px 0 0; padding-left:18px; color:var(--muted); line-height:1.7">
+              <li>Ты умеешь слушать так, что рядом становится спокойно.</li>
+              <li>Твоя улыбка — мой лучший антистресс.</li>
+              <li>Ты заботишься о мелочах, и в этом столько любви.</li>
+              <li>Ты красивая — и внешне, и в своих поступках.</li>
+              <li>Ты вдохновляешь меня и поддерживаешь, когда нужно.</li>
+              <li>Ты умеешь радоваться простым вещам — и я учусь этому у тебя.</li>
+              <li>С тобой любая прогулка превращается в маленькое приключение.</li>
+              <li>Ты делаешь «обычный день» особенным.</li>
+            </ul>
+          </div>
+          <div class="ph" style="min-height:260px">
+            <img src="img/photo_2026-02-06_01-05-34.jpg" alt="Большое фото" onerror="this.style.display='none'" />
+            <div class="label">Наше фото</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="future">
+        <div class="section-head">
+          <h2>Немного про нас</h2>
+          <p class="hint">и маленький сюрприз</p>
+        </div>
+        <div class="card cta">
+          <div class="left">
+            <h2 id="finalTitle">Лерочка, я выбираю тебя — снова и снова</h2>
+            <p id="finalText">Я хочу, чтобы ты знала: рядом с тобой мне хорошо, тепло и по-настоящему. И если вдруг тебе понадобится напоминание — ты любима. Очень.</p>
+          </div>
+          <button id="heartBtn" type="button">Нажми ❤️</button>
+        </div>
+      </section>
+
+      <footer class="card">
+        Сделано с любовью · <span id="signature">для Лерочки</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Мини-анимация сердечек по нажатию
+    const heartBtn = document.getElementById('heartBtn');
+    const hearts = ['❤','💜','💗','💖','💘','💙','💞','💕'];
+
+    function popHeart(burst=false){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+
+      const x = Math.random() * 100;
+      const dx = (Math.random()*2 - 1) * 140 + 'px';
+      const s = (Math.random()*10 + 16) + 'px';
+      const d = (Math.random()*1.4 + (burst ? .9 : 1.4)) + 's';
+
+      h.style.setProperty('--x', x + 'vw');
+      h.style.setProperty('--dx', dx);
+      h.style.setProperty('--s', s);
+      h.style.setProperty('--d', d);
+
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 2500);
+    }
+
+    heartBtn.addEventListener('click', () => {
+      for(let i=0;i<12;i++) setTimeout(() => popHeart(true), i*60);
+    });
+  </script>
+</body>
+</html>
